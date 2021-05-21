@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WolfPupLabs - Crazy Race</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="responsive.css">
+
+    <!-- The following libraries and polyfills are recommended to maximize browser support -->
+    <!-- NOTE: you must adjust the paths as appropriate for your project -->
+
+    <!-- 🚨 REQUIRED: Web Components polyfill to support Edge and Firefox < 63 -->
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.1.3/webcomponents-loader.js"></script>
+
+    <!-- 💁 OPTIONAL: Intersection Observer polyfill for better performance in Safari and IE11 -->
+    <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
+
+    <!-- 💁 OPTIONAL: Resize Observer polyfill improves resize behavior in non-Chrome browsers -->
+    <script src="https://unpkg.com/resize-observer-polyfill@1.5.0/dist/ResizeObserver.js"></script>
+
+    <!-- 💁 OPTIONAL: Fullscreen polyfill is required for experimental AR features in Canary -->
+    <script src="https://unpkg.com/fullscreen-polyfill@1.0.2/dist/fullscreen.polyfill.js"></script>
+
+    <!-- 💁 OPTIONAL: Include prismatic.js for Magic Leap support -->
+	<script src="https://unpkg.com/@magicleap/prismatic@0.18.2/prismatic.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  </head>
+<body >
+	<style>
+		.material-icons{
+			font-size: 40px!important;
+		}
+		/* .btn-arrow-icon{
+			width: 30%;
+			cursor: pointer;
+			float: left;
+		} */
+		/* .btn-arrow-icon{
+			width: 30%;
+			cursor: pointer;
+			float: left;
+    } */
+    /* #default-ar-button{
+      z-index: 99999999 !important;
+    }
+     */
+    .btn-arrow-icon{
+      position: absolute;
+      top:45vh;
+      width: 100%;
+      
+    }
+    .btn-arrow-icon img{
+      width: 12vw;
+      cursor: pointer;
+    }
+    #btn-arrow-left{
+      left: 2vw;
+      position: absolute;
+    }
+    #btn-arrow-right{
+      right:2vw;
+      position: absolute;
+    }
+
+		.header{
+			
+			font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+			margin-top: 15px;
+    }
+    .logo{
+      width: 30%;
+      position: absolute;
+      float:left;
+      padding-left: 2vw;
+    }
+    .logo img{
+      width: 11vw;
+    }
+    .wording{
+      margin: auto;
+			width: 45%;
+			display: block;
+      text-align: center;
+    }
+		#title-name{
+      font-size: 1.6em;
+      font-weight: 400;
+    }
+    #name{
+      font-size: 1.3em;
+      font-weight:900;
+      margin-top: 12px;
+    }
+    .stat-mountain{
+      margin-top: 7px;
+      font-size: 1em;
+      
+    }
+    .link-map{
+      position: absolute;
+      width: 30%;
+      right: 5vw;
+      top: 13vh;
+      text-align: right;
+      
+    }
+    .link-map img{
+      width: 10vw;
+      cursor: pointer;
+    }
+    .img-number{
+      text-align: center;
+      position: absolute;
+      width: 100%;
+      top: 20vh;
+      padding-left:2px ;
+    }
+
+    .img-number img{
+       width: 10vw;
+    }
+
+   
+
+		@media only screen and (min-width: 768px) {
+			#title-name{
+				font-size: 2.5em;
+			}
+			#name{
+				font-size: 2em;
+			}
+		}
+
+	</style>
+
+  <div class="grid-container">
+                <model-viewer class="a"
+                  onload="loading()"
+                  id="model-viewer"
+                  environment-image="assets/spruit_sunrise_1k_LDR.jpg"
+                  ar
+                  autoplay
+                  ar-mode="scene-viewer webxr"
+                  data-model="tukang_gas"
+                  src="assets/tukang_gas/tukang_gas.glb"
+                  ios-src="assets/tukang_gas/tukang_gas.usdz"
+                  alt="Crazy Race"
+                  background-color="#CCCCCC"
+                  shadow-intensity="1" 
+                  camera-controls
+                  >
+                  <div class="header">
+                    <div class="logo"><img src="assets/WPBig.png" alt="" srcset=""></div>
+                    <div class="wording" id="title-name">Crazy Race</div>
+                    <div class="wording" id="name">Tukang Gas</div>
+<!--                     <div class="wording stat-mountain"><span id="height">8.848</span><strong>m</strong> | <span id="suhu">-40 </span><strong>&deg; C</strong></div> -->
+<!--                     <div class="link-map"><img src="assets/Map.png" alt="" srcset="" onclick="openMap()"></div> -->
+<!--                     <div class="img-number"><img id="img-num" src="assets/1.png" alt=""></div> -->
+                  </div>
+                  <div class="btn-arrow-icon">
+                    <span class="btn-arrow" id="btn-arrow-left" >
+                      <img src="assets/L.png" alt=""  onclick="changeShow('previous')">
+                    </span>
+                      <span class="btn-arrow" id="btn-arrow-right" >
+                      <img src="assets/R.png" alt=""  onclick="changeShow('next')">
+                      </span>
+                  </div>
+                </model-viewer>
+  </div>
+
+  <!-- 💁 Include both scripts below to support all browsers! -->
+
+  <!-- <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.js"></script> -->
+  <script type="module"  src="assets/model-viewer.js"></script>
+  <!-- <script
+  src="https://code.jquery.com/jquery-3.5.0.min.js"
+  integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+  crossorigin="anonymous"></script> -->
+<script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+<script>
+
+  
+  	const viewer = document.getElementById('model-viewer');
+    let data3d = ['tukang_gas','tukang_sayur'];
+    //let dataHeight = ['8.848','6.961','6.194','5.898','5.642','4.892','4.884']
+    //let dataDegree = ['-40','-35','-35','-25','-30','-38','-8']
+    //let dataLink = ['dyMwB9R','XyMeGHh','dyMeZtw','xyMe1gY','yyMe9CX','CyMe377','lyMe7Hl']
+    let orderNo = 0
+    let lastOrder = data3d.length
+
+    function changeShow(status){
+      
+     	let model = viewer.getAttribute("data-model");
+    	let ordering = data3d.indexOf(model);
+			if(status=="next"){
+				if(ordering==(data3d.length-1)){
+					orderNo = 0
+				}else{
+					orderNo = ordering+1;
+				}
+			}else{
+				if(ordering==0){
+					orderNo = data3d.length-1
+				}else{
+					orderNo = ordering - 1;
+				}
+			} 
+
+
+		document.getElementById('btn-arrow-left').setAttribute('disabled','disabled')
+		document.getElementById('btn-arrow-right').setAttribute('disabled','disabled')
+		viewer.setAttribute('data-model',data3d[orderNo])
+		viewer.setAttribute('src','assets/'+data3d[orderNo]+'/'+data3d[orderNo]+'.glb')
+		viewer.setAttribute('ios-src','assets/'+data3d[orderNo]+'/'+data3d[orderNo]+'.usdz')
+		viewer.addEventListener("model-visibility", function(e){
+		document.getElementById('btn-arrow-left').removeAttribute('disabled')
+		document.getElementById('btn-arrow-right').removeAttribute('disabled')
+   
+		});
+    }
+
+    function loading(){
+    var nameHtml = data3d[orderNo]
+    var imgNum = orderNo+1;
+		nameHtml = nameHtml.replace("_", " ");
+        document.getElementById('name').innerHTML = nameHtml
+        //document.getElementById('suhu').innerHTML = dataDegree[orderNo]
+        //document.getElementById('height').innerHTML = dataHeight[orderNo]
+        //document.getElementById('img-num').setAttribute('src','assets/'+imgNum+".png")
+    }
+
+    //function openMap(){
+      //window.open("https://cutt.ly/"+dataLink[orderNo]);
+    //}
+
+		//     var detector = new MobileDetect(window.navigator.userAgent)
+		//     console.log( "Mobile: " + detector.mobile());
+		// console.log( "Phone: " + detector.phone());
+		// console.log( "Tablet: " + detector.tablet());
+		// console.log( "OS: " + detector.os());
+		// console.log( "userAgent: " + detector.userAgent());
+
+
+    
+    
+  
+</script>
+</body>
+</html>
