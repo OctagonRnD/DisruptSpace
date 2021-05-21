@@ -214,8 +214,8 @@
 		document.getElementById('btn-arrow-left').setAttribute('disabled','disabled')
 		document.getElementById('btn-arrow-right').setAttribute('disabled','disabled')
 		viewer.setAttribute('data-model',data3d[orderNo])
-		viewer.setAttribute('src','assets/'+data3d[orderNo]+'/'+data3d[orderNo]+'.glb')
-		viewer.setAttribute('ios-src','assets/'+data3d[orderNo]+'/'+data3d[orderNo]+'.usdz')
+		viewer.setAttribute('src','assets/GLB/'+data3d[orderNo]+'/'+data3d[orderNo]+'.glb')
+		viewer.setAttribute('ios-src','assets/USDZ/'+data3d[orderNo]+'/'+data3d[orderNo]+'.usdz')
 		viewer.addEventListener("model-visibility", function(e){
 		document.getElementById('btn-arrow-left').removeAttribute('disabled')
 		document.getElementById('btn-arrow-right').removeAttribute('disabled')
