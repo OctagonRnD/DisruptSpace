@@ -1,0 +1,12 @@
+<model-viewer src="Dr_maya_Angelou.glb" camera-controls ar ar-modes="scene-viewer webxr quick-look" ios-src="Dr_Maya_Angelou.usdz" camera-orbit="5.544e-15deg 75deg 1.678m" min-camera-orbit="auto auto auto" max-camera-orbit="auto auto 1.678m" poster="poster.png">
+
+    <div class="progress-bar hide" slot="progress-bar">
+        <div class="update-bar"></div>
+    </div>
+    <button slot="ar-button" id="ar-button">
+        View in your space
+    </button>
+    <div id="ar-prompt">
+        <img src="https://modelviewer.dev/shared-assets/icons/hand.png">
+    </div>
+</model-viewer>
